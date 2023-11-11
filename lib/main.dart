@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wash_wiz/pages/sign_in_page_view.dart';
+import 'package:wash_wiz/pages/home_page_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
-      home: const SignInPageView(),
+      home: const HomePageView(),
     );
   }
 }

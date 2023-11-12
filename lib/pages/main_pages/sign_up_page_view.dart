@@ -18,8 +18,8 @@ class _SignUpPageViewState extends State<SignUpPageView> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController mobileController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
+  final Duration textSpeed = const Duration(milliseconds: 150);
   final int style = MyApp.style;
-  Duration textSpeed = const Duration(milliseconds: 150);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

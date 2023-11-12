@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wash_wiz/main.dart';
 import 'package:wash_wiz/pages/main_pages/forget_password_page_view.dart';
 import 'package:wash_wiz/pages/main_pages/navigation_control_page.dart';
@@ -16,6 +17,7 @@ class SignInPageView extends StatefulWidget {
 }
 
 class _SignInPageViewState extends State<SignInPageView> {
+  final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final int style = MyApp.style;
@@ -65,6 +67,9 @@ class _SignInPageViewState extends State<SignInPageView> {
         const SizedBox(height: 16),
         ElevatedButton(
           onPressed: () {
+            prefs.then((value) {
+              value.setBool('isSingIn', true);
+            });
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (_) => const NavigationControlPage()),

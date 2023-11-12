@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wash_wiz/main.dart';
 import 'package:wash_wiz/pages/main_pages/sign_in_page_view.dart';
 import 'package:wash_wiz/pages/sub_pages/add_sub_page.dart';
@@ -17,6 +18,7 @@ class NavigationControlPage extends StatefulWidget {
 }
 
 class _NavigationControlPageState extends State<NavigationControlPage> {
+  final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   Widget _currentBody = const HomeSubPage();
   String _currentTitle = 'Home';
   int _currentIndex = 0;
@@ -161,6 +163,9 @@ class _NavigationControlPageState extends State<NavigationControlPage> {
                 leading: const Icon(Icons.logout),
                 title: const Text('Sign Out'),
                 onTap: () {
+                  prefs.then((value) {
+                    value.setBool('is_sing_in', false);
+                  });
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (_) => const SignInPageView()),

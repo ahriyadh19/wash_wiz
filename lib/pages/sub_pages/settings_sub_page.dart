@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wash_wiz/main.dart';
 import 'package:wash_wiz/pages/main_pages/navigation_control_page.dart';
 
@@ -10,6 +11,8 @@ class SettingsSubPage extends StatefulWidget {
 }
 
 class _SettingsSubPageState extends State<SettingsSubPage> {
+  final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,15 +39,7 @@ class _SettingsSubPageState extends State<SettingsSubPage> {
     return Column(
       children: [
         GestureDetector(
-          onTap: () {
-            setState(() {
-              MyApp.style = style;
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => const NavigationControlPage()),
-              );
-            });
-          },
+          onTap: () => saveChange(op: style),
           child: Image.asset(
             imagePath,
             width: MediaQuery.of(context).size.width / 3.2,
@@ -54,17 +49,20 @@ class _SettingsSubPageState extends State<SettingsSubPage> {
         Radio(
           value: style,
           groupValue: MyApp.style,
-          onChanged: (value) {
-            setState(() {
-              MyApp.style = value as int;
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => const NavigationControlPage()),
-              );
-            });
-          },
+          onChanged: (int? value) => saveChange(op: value!),
         ),
       ],
+    );
+  }
+
+  saveChange({required int op}) {
+    MyApp.style = op;
+    prefs.then((value) {
+      value.setInt('style', op);
+    });
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const NavigationControlPage()),
     );
   }
 }

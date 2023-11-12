@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wash_wiz/pages/home_page_view.dart';
+import 'package:wash_wiz/pages/main_pages/navigation_control_page.dart';
+import 'package:wash_wiz/widgets/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,10 +16,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Wash Wiz',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: MyCustomColor.getColor(optionColor: style)),
         useMaterial3: true,
       ),
-      home: const HomePageView(),
+      home: const NavigationControlPage(),
     );
   }
 }

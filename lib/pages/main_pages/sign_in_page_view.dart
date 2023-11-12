@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wash_wiz/main.dart';
-import 'package:wash_wiz/pages/forget_password_page_view.dart';
-import 'package:wash_wiz/pages/home_page_view.dart';
-import 'package:wash_wiz/pages/sign_up_page_view.dart';
+import 'package:wash_wiz/pages/main_pages/forget_password_page_view.dart';
+import 'package:wash_wiz/pages/main_pages/navigation_control_page.dart';
+import 'package:wash_wiz/pages/main_pages/sign_up_page_view.dart';
 import 'package:wash_wiz/widgets/app_icon.dart';
 import 'package:wash_wiz/widgets/bg.dart';
 import 'package:wash_wiz/widgets/colors.dart';
@@ -67,7 +67,7 @@ class _SignInPageViewState extends State<SignInPageView> {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (_) => const HomePageView()),
+              MaterialPageRoute(builder: (_) => const NavigationControlPage()),
             );
           },
           child: Text('Sign In', style: setColor()),

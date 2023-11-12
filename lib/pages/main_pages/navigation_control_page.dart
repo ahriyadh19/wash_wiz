@@ -6,6 +6,7 @@ import 'package:wash_wiz/pages/sub_pages/add_sub_page.dart';
 import 'package:wash_wiz/pages/sub_pages/history_sub_page.dart';
 import 'package:wash_wiz/pages/sub_pages/home_sub_page.dart';
 import 'package:wash_wiz/pages/sub_pages/profile_sub_page.dart';
+import 'package:wash_wiz/pages/sub_pages/settings_sub_page.dart';
 import 'package:wash_wiz/widgets/colors.dart';
 
 class NavigationControlPage extends StatefulWidget {
@@ -16,26 +17,30 @@ class NavigationControlPage extends StatefulWidget {
 }
 
 class _NavigationControlPageState extends State<NavigationControlPage> {
+  Widget _currentBody = const HomeSubPage();
+  String _currentTitle = 'Home';
   int _currentIndex = 0;
   final List<Widget> _pages = const [
     HomeSubPage(),
     HistorySubPage(),
     AddSubPage(),
     ProfileSubPage(),
+    SettingsSubPage(),
   ];
-  final List<String> _titles = const [
-    'Home',
-    'History',
-    'Add',
-    'Profile',
-  ];
+
+  final List<String> _titles = const ['Home', 'History', 'Add', 'Profile', 'Settings'];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: upBar(),
       drawer: myDrawer(),
-      body: _pages[_currentIndex],
+      body: _currentBody,
       bottomNavigationBar: bottomNavBar(),
     );
   }
@@ -43,12 +48,23 @@ class _NavigationControlPageState extends State<NavigationControlPage> {
   AppBar upBar() {
     return AppBar(
         title: Text(
-          _titles[_currentIndex],
+          _currentTitle,
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         backgroundColor: MyCustomColor.getColor(optionColor: MyApp.style),
-        iconTheme: const IconThemeData(color: Colors.white));
+        iconTheme: const IconThemeData(color: Colors.white),
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _currentBody = _pages[_pages.length - 1];
+                _currentTitle = _titles[_pages.length - 1];
+              });
+            },
+            icon: const Icon(Icons.settings),
+          ),
+        ]);
   }
 
   bottomNavBar() {
@@ -58,6 +74,8 @@ class _NavigationControlPageState extends State<NavigationControlPage> {
       onTap: (index) {
         setState(() {
           _currentIndex = index;
+          _currentBody = _pages[index];
+          _currentTitle = _titles[index];
         });
       },
       items: [

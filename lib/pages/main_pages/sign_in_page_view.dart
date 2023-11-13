@@ -6,7 +6,6 @@ import 'package:wash_wiz/pages/main_pages/navigation_control_page.dart';
 import 'package:wash_wiz/pages/main_pages/sign_up_page_view.dart';
 import 'package:wash_wiz/widgets/app_icon.dart';
 import 'package:wash_wiz/widgets/bg.dart';
-import 'package:wash_wiz/widgets/colors.dart';
 import 'package:wash_wiz/widgets/input_design.dart';
 
 class SignInPageView extends StatefulWidget {
@@ -68,14 +67,16 @@ class _SignInPageViewState extends State<SignInPageView> {
         ElevatedButton(
           onPressed: () {
             prefs.then((value) {
-              value.setBool('isSingIn', true);
+              value.setBool('session_started', true);
             });
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (_) => const NavigationControlPage()),
             );
           },
-          child: Text('Sign In', style: setColor()),
+          child: const Text(
+            'Sign In',
+          ),
         ),
         TextButton(
           onPressed: () {
@@ -84,7 +85,9 @@ class _SignInPageViewState extends State<SignInPageView> {
               MaterialPageRoute(builder: (_) => ForgetPasswordPageView()),
             );
           },
-          child: Text('Forgot Password?', style: setColor()),
+          child: const Text(
+            'Forgot Password?',
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -97,15 +100,13 @@ class _SignInPageViewState extends State<SignInPageView> {
                   MaterialPageRoute(builder: (_) => const SignUpPageView()),
                 );
               },
-              child: Text('Sign Up', style: setColor()),
+              child: const Text(
+                'Sign Up',
+              ),
             ),
           ],
         ),
       ],
     );
-  }
-
-  TextStyle setColor() {
-    return TextStyle(color: MyCustomColor.getColor(optionColor: style));
   }
 }

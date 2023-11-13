@@ -22,12 +22,13 @@ class _NavigationControlPageState extends State<NavigationControlPage> {
   Widget _currentBody = const HomeSubPage();
   String _currentTitle = 'Home';
   int _currentIndex = 0;
+  Color myCustomColor = MyCustomColor.getColor(optionColor: MyApp.style);
   final List<Widget> _pages = const [
     HomeSubPage(),
     HistorySubPage(),
     AddSubPage(),
     ProfileSubPage(),
-    SettingsSubPage(),
+    SettingsSubPage(), // must be in the last index of the list always
   ];
 
   final List<String> _titles = const ['Home', 'History', 'Add', 'Profile', 'Settings'];
@@ -54,7 +55,7 @@ class _NavigationControlPageState extends State<NavigationControlPage> {
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: MyCustomColor.getColor(optionColor: MyApp.style),
+        backgroundColor: myCustomColor,
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
@@ -85,28 +86,28 @@ class _NavigationControlPageState extends State<NavigationControlPage> {
         SalomonBottomBarItem(
           icon: const Icon(Icons.home),
           title: const Text('Home'),
-          selectedColor: MyCustomColor.getColor(optionColor: MyApp.style),
+          selectedColor: myCustomColor,
         ),
 
         /// History
         SalomonBottomBarItem(
           icon: const Icon(Icons.history_rounded),
           title: const Text('History'),
-          selectedColor: MyCustomColor.getColor(optionColor: MyApp.style),
+          selectedColor: myCustomColor,
         ),
 
         /// Add
         SalomonBottomBarItem(
           icon: const Icon(Icons.add),
           title: const Text('Add'),
-          selectedColor: MyCustomColor.getColor(optionColor: MyApp.style),
+          selectedColor: myCustomColor,
         ),
 
         /// Profile
         SalomonBottomBarItem(
           icon: const Icon(Icons.person),
           title: const Text('Profile'),
-          selectedColor: MyCustomColor.getColor(optionColor: MyApp.style),
+          selectedColor: myCustomColor,
         ),
       ],
     );
@@ -119,7 +120,7 @@ class _NavigationControlPageState extends State<NavigationControlPage> {
           Container(
             height: 200,
             width: double.infinity,
-            color: MyCustomColor.getColor(optionColor: MyApp.style),
+            color: myCustomColor,
             child: const Center(
               child: Text(
                 'Wash Wiz',
@@ -164,7 +165,7 @@ class _NavigationControlPageState extends State<NavigationControlPage> {
                 title: const Text('Sign Out'),
                 onTap: () {
                   prefs.then((value) {
-                    value.setBool('is_sing_in', false);
+                    value.setBool('session_started', false);
                   });
                   Navigator.pushReplacement(
                     context,

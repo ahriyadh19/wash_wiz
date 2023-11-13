@@ -74,19 +74,12 @@ class _SignUpPageViewState extends State<SignUpPageView> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {},
-              child: Text(
-                'Submit',
-                style: setColor(),
-              ),
+              child: const Text('Submit'),
             ),
           ]),
         ),
       ),
     );
-  }
-
-  TextStyle setColor() {
-    return TextStyle(color: MyCustomColor.getColor(optionColor: style));
   }
 
   DefaultTextStyle textMove() {

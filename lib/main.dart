@@ -10,9 +10,10 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  // the configuration of the app is stored in the static variables to be controlled in whole app
   static int userRole = 1; // 0 = admin, 1 = user
   static int style = 1;
-  static bool isSingIn = false;
+  static bool sessionStarted = false;
   const MyApp({super.key});
 
   @override
@@ -20,35 +21,36 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+  late Future<SharedPreferences> prefs;
+
   @override
   void initState() {
     super.initState();
-    prefs.then((value) {
-      MyApp.userRole = value.getInt('user_role') ?? 1;
-      MyApp.style = value.getInt('style') ?? 1;
-      MyApp.isSingIn = value.getBool('is_sing_in') ?? false;
-      debugPrint('isSingIn: ${MyApp.isSingIn}');
-      debugPrint('userRole: ${MyApp.userRole}');
-      debugPrint('style: ${MyApp.style}');
-      setState(() {
-        MyApp.isSingIn = MyApp.isSingIn;
-        MyApp.userRole = MyApp.userRole;
-        MyApp.style = MyApp.style;
-      });
-    });
+    prefs = SharedPreferences.getInstance();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Wash Wiz',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: MyCustomColor.getColor(optionColor: MyApp.style)),
-        useMaterial3: true,
-      ),
-      home: MyApp.isSingIn ? const NavigationControlPage() : const SignInPageView(),
+    return FutureBuilder(
+      future: prefs,
+      builder: (context, AsyncSnapshot<SharedPreferences> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else {
+          MyApp.userRole = snapshot.data?.getInt('user_role') ?? 1;
+          MyApp.style = snapshot.data?.getInt('style') ?? 1;
+          MyApp.sessionStarted = snapshot.data?.getBool('session_started') ?? false;
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Wash Wiz',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: MyCustomColor.getColor(optionColor: MyApp.style)),
+              useMaterial3: true,
+            ),
+            home: MyApp.sessionStarted ? const NavigationControlPage() : const SignInPageView(),
+          );
+        }
+      },
     );
   }
 }

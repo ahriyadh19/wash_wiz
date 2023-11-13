@@ -9,45 +9,33 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  // the configuration of the app is stored in the static variables to be controlled in whole app
+class MyApp extends StatelessWidget {
+  // the configuration of the app is stored in the static variables to be controlled in the whole app
   static int userRole = 1; // 0 = admin, 1 = user
   static int style = 1;
   static bool sessionStarted = false;
+
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  late Future<SharedPreferences> prefs;
-
-  @override
-  void initState() {
-    super.initState();
-    prefs = SharedPreferences.getInstance();
-  }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: prefs,
+      future: SharedPreferences.getInstance(),
       builder: (context, AsyncSnapshot<SharedPreferences> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else {
-          MyApp.userRole = snapshot.data?.getInt('user_role') ?? 1;
-          MyApp.style = snapshot.data?.getInt('style') ?? 1;
-          MyApp.sessionStarted = snapshot.data?.getBool('session_started') ?? false;
+          userRole = snapshot.data?.getInt('user_role') ?? 1;
+          style = snapshot.data?.getInt('style') ?? 1;
+          sessionStarted = snapshot.data?.getBool('session_started') ?? false;
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Wash Wiz',
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: MyCustomColor.getColor(optionColor: MyApp.style)),
+              colorScheme: ColorScheme.fromSeed(seedColor: MyCustomColor.getColor(optionColor: style)),
               useMaterial3: true,
             ),
-            home: MyApp.sessionStarted ? const NavigationControlPage() : const SignInPageView(),
+            home: sessionStarted ? const NavigationControlPage() : const SignInPageView(),
           );
         }
       },

@@ -30,7 +30,7 @@ class NoData extends StatelessWidget {
       child: Center(
         child: Container(
           decoration: const BoxDecoration(
-            color: Colors.black87,
+            color: Colors.black54,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),

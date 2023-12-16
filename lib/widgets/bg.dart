@@ -4,7 +4,7 @@ class BG extends StatelessWidget {
   final Widget child;
   final int optionImage;
 
-  const BG({Key? key, required this.child, required this.optionImage}) : super(key: key);
+  const BG({super.key, required this.child, required this.optionImage});
 
   @override
   Widget build(BuildContext context) {

@@ -8,13 +8,13 @@ class InputDesign extends StatefulWidget {
   final Icon prefixIcon;
 
   const InputDesign({
-    Key? key,
+    super.key,
     required this.hintText,
     required this.keyboardType,
     required this.obscureText,
     required this.controller,
     required this.prefixIcon,
-  }) : super(key: key);
+  });
 
   @override
   State<InputDesign> createState() => _InputDesignState();

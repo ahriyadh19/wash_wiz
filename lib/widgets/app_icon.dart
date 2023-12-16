@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppIcon extends StatelessWidget {
   final int optionImage;
 
-  const AppIcon({Key? key, required this.optionImage}) : super(key: key);
+  const AppIcon({super.key, required this.optionImage});
 
   @override
   Widget build(BuildContext context) {

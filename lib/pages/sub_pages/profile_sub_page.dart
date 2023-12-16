@@ -185,7 +185,7 @@ class _ProfileSubPageState extends State<ProfileSubPage> {
               child: Image.asset(
                 fit: BoxFit.fill,
                 imagePath,
-                width: MediaQuery.of(context).size.width / 4,
+                width: MediaQuery.of(context).size.width / 4.5,
                 height: MediaQuery.of(context).size.width / 2.5,
               ),
             ),

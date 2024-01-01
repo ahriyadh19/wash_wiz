@@ -1,60 +1,53 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class News {
-  String id;
+  String uid;
   String title;
   String body;
-  DateTime date;
-  bool isNotification;
-  int status;
-  
+  DateTime time;
+  String image;
+
   News({
-    required this.id,
+    required this.uid,
     required this.title,
     required this.body,
-    required this.date,
-    required this.isNotification,
-    required this.status,
+    required this.time,
+    required this.image,
   });
 
   News copyWith({
-    String? id,
+    String? uid,
     String? title,
     String? body,
-    DateTime? date,
-    bool? isNotification,
-    int? status,
+    DateTime? time,
+    String? image,
   }) {
     return News(
-      id: id ?? this.id,
+      uid: uid ?? this.uid,
       title: title ?? this.title,
       body: body ?? this.body,
-      date: date ?? this.date,
-      isNotification: isNotification ?? this.isNotification,
-      status: status ?? this.status,
+      time: time ?? this.time,
+      image: image ?? this.image,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
+      'uid': uid,
       'title': title,
       'body': body,
-      'date': date.millisecondsSinceEpoch,
-      'isNotification': isNotification,
-      'status': status,
+      'time': time.millisecondsSinceEpoch,
+      'image': image,
     };
   }
 
   factory News.fromMap(Map<String, dynamic> map) {
     return News(
-      id: map['id'] as String,
+      uid: map['uid'] as String,
       title: map['title'] as String,
       body: map['body'] as String,
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
-      isNotification: map['isNotification'] as bool,
-      status: map['status'] as int,
+      time: DateTime.fromMillisecondsSinceEpoch(map['time'] as int),
+      image: map['image'] as String,
     );
   }
 
@@ -64,23 +57,18 @@ class News {
 
   @override
   String toString() {
-    return 'News(id: $id, title: $title, body: $body, date: $date, isNotification: $isNotification, status: $status)';
+    return 'News(uid: $uid, title: $title, body: $body, time: $time, image: $image)';
   }
 
   @override
   bool operator ==(covariant News other) {
     if (identical(this, other)) return true;
 
-    return other.id == id &&
-        other.title == title &&
-        other.body == body &&
-        other.date == date &&
-        other.isNotification == isNotification &&
-        other.status == status;
+    return other.uid == uid && other.title == title && other.body == body && other.time == time && other.image == image;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ title.hashCode ^ body.hashCode ^ date.hashCode ^ isNotification.hashCode ^ status.hashCode;
+    return uid.hashCode ^ title.hashCode ^ body.hashCode ^ time.hashCode ^ image.hashCode;
   }
 }

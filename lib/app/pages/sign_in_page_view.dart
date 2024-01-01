@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wash_wiz/app/pages/forget_password_page_view.dart';
+import 'package:wash_wiz/app/pages/sign_up_page_view.dart';
 import 'package:wash_wiz/main.dart';
-import 'package:wash_wiz/customer/pages/main_pages/forget_password_page_view.dart';
 import 'package:wash_wiz/customer/pages/main_pages/navigation_control_page.dart';
-import 'package:wash_wiz/customer/pages/main_pages/sign_up_page_view.dart';
-import 'package:wash_wiz/widgets/app_icon.dart';
-import 'package:wash_wiz/widgets/bg.dart';
-import 'package:wash_wiz/widgets/input_design.dart';
+import 'package:wash_wiz/app/widgets/app_icon.dart';
+import 'package:wash_wiz/app/widgets/bg.dart';
+import 'package:wash_wiz/app/widgets/input_design.dart';
 
 class SignInPageView extends StatefulWidget {
   const SignInPageView({super.key});

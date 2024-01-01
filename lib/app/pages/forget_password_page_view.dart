@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wash_wiz/main.dart';
-import 'package:wash_wiz/widgets/bg.dart';
-import 'package:wash_wiz/widgets/colors.dart';
-import 'package:wash_wiz/widgets/input_design.dart';
+import 'package:wash_wiz/app/widgets/bg.dart';
+import 'package:wash_wiz/app/widgets/colors.dart';
+import 'package:wash_wiz/app/widgets/input_design.dart';
 
 class ForgetPasswordPageView extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();

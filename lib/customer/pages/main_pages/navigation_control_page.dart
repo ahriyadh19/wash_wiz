@@ -6,7 +6,7 @@ import 'package:wash_wiz/customer/pages/sub_pages/request_sub_page.dart';
 import 'package:wash_wiz/customer/pages/sub_pages/history_sub_page.dart';
 import 'package:wash_wiz/customer/pages/sub_pages/news_sub_page.dart';
 import 'package:wash_wiz/customer/pages/sub_pages/profile_sub_page.dart';
-import 'package:wash_wiz/widgets/colors.dart';
+import 'package:wash_wiz/app/widgets/colors.dart';
 
 class NavigationControlPage extends StatefulWidget {
   const NavigationControlPage({super.key});

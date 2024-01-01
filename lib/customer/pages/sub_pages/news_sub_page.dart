@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wash_wiz/widgets/no_data.dart';
+import 'package:wash_wiz/app/widgets/no_data.dart';
 
 class NewsSubPage extends StatefulWidget {
   const NewsSubPage({super.key});

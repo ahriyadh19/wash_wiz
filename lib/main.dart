@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wash_wiz/app/pages/sign_in_page_view.dart';
 import 'package:wash_wiz/customer/pages/main_pages/navigation_control_page.dart';
-import 'package:wash_wiz/customer/pages/main_pages/sign_in_page_view.dart';
-import 'package:wash_wiz/widgets/colors.dart';
+import 'package:wash_wiz/app/widgets/colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

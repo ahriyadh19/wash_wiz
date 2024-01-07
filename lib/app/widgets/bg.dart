@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wash_wiz/utilities/constant.dart';
 
 class BG extends StatelessWidget {
   final Widget child;
@@ -11,16 +12,16 @@ class BG extends StatelessWidget {
     String backgroundImage;
     switch (optionImage) {
       case 1:
-        backgroundImage = 'lib/assets/1/bg1.jpg';
+        backgroundImage = appTheme[optionImage]['bg'];
         break;
       case 2:
-        backgroundImage = 'lib/assets/2/bg2.jpg';
+        backgroundImage = appTheme[optionImage]['bg'];
         break;
       case 3:
-        backgroundImage = 'lib/assets/3/bg3.jpg';
+        backgroundImage = appTheme[optionImage]['bg'];
         break;
       default:
-        backgroundImage = 'lib/assets/2/bg2.jpg';
+        backgroundImage = appTheme[1]['bg'];
     }
     return Container(
       constraints: const BoxConstraints.expand(),

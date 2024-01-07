@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wash_wiz/utilities/constant.dart';
 
 class AppIcon extends StatelessWidget {
   final int optionImage;
@@ -10,16 +11,16 @@ class AppIcon extends StatelessWidget {
     String imagePath;
     switch (optionImage) {
       case 1:
-        imagePath = 'lib/assets/1/logo-no-bg.png';
+        imagePath = appTheme[optionImage]['logo'];
         break;
       case 2:
-        imagePath = 'lib/assets/2/logo-no-bg.png';
+        imagePath = appTheme[optionImage]['logo'];
         break;
       case 3:
-        imagePath = 'lib/assets/3/logo-no-bg.png';
+        imagePath = appTheme[optionImage]['logo'];
         break;
       default:
-        imagePath = 'lib/assets/1/logo-no-bg.png';
+        imagePath = appTheme[1]['logo'];
     }
 
     return Container(
